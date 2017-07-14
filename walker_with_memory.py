@@ -56,7 +56,7 @@ for k in range(len(w)):
     for i in range(10000):
         w[k].step()
 
-
+# Make the figure
 f, (ax1,ax2) = plt.subplots(1,2, figsize = (12,6))
 
 # Plot final coordinate for all walkers

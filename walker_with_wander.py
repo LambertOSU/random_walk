@@ -8,37 +8,39 @@
 ##############################################################
 import math
 import random
-from matplotlib import pyplot as plt
 import time
+from matplotlib import pyplot as plt
 ##############################################################
-#start timer 
+
+#start timer
 st = time.time()
 
+# seed RNG
 random.seed()
 
 ##############################################################
 class walker:
-    
+
     # walker class - individual particle taking random walk
-    
+
     # required packages: math, random
-    
+
     # class variables
     step_sz=0.01
 
     def __init__(self):
 
-        # Particle location 
+        # Particle location
         self.x = [0]
         self.y = [0]
-    
-   
+
+
     def step(self):
-        # Take a step     
-        
+        # Take a step
+
         # Generate random angle
         theta = random.random()*2*math.pi
-        
+
         # Append x,y lists with new location
         self.x.append(self.x[-1] + math.cos(theta)*self.step_sz)
         self.y.append(self.y[-1] + math.sin(theta)*self.step_sz)
@@ -46,7 +48,7 @@ class walker:
 
     def wander(self,num_steps):
         # Take many steps
-        
+
         for i in range(num_steps):
             self.step()
 ##############################################################
@@ -70,7 +72,7 @@ def main():
     for p in range(len(w)):
         ax1.scatter(w[p].x[-1],w[p].y[-1])
 
-    # Format subplot    
+    # Format subplot
     ax1.set_xlim(left = -3,right = 3)
     ax1.set_ylim(bottom = -3,top = 3)
     ax1.set_title('Final Position')
@@ -81,7 +83,7 @@ def main():
         ax2.plot(w[i].x,w[i].y)
 
 
-    # Format subplot 
+    # Format subplot
     ax2.set_xlim(left = -3,right = 3)
     ax2.set_ylim(bottom = -3,top = 3)
     title_str = 'Full Trace For ' + str(num_traces) + ' Particles'
@@ -94,26 +96,5 @@ def main():
     plt.show()
 ##############################################################
 
-
-main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if __name__ == '__main__':
+  main()
