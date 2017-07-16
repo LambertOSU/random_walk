@@ -38,7 +38,7 @@ def main():
     num_steps = 10000
 
     # radial thickness of annuli for post processing
-    ring_res = 0.1
+    ring_res = 0.25
 
     # generate list of walker instances
     w = [walker() for i in range(num_walkers)]
@@ -88,6 +88,9 @@ def main():
     # sort the counter
     ring_cnt = sorted(ring_cnt.items(), key=itemgetter(0))
 
+    # initialize bin boundaries
+    circles = []
+
     # initialize concentration list
     concentration =[]
 
@@ -103,6 +106,11 @@ def main():
 
     # radial coordinates for plotting
     r = [i*ring_res for i in range(len(ring_cnt))]
+
+    # mark the bin boundaries on the scatter plot (ax1)
+    circles = [plt.Circle((0,0), x, fill=False) for x in r]
+    for i in range(len(circles)):
+        ax1.add_artist(circles[i])
 
     # plot concentration
     ax2.plot(r,concentration)
